@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.lit.mapper.ResourcesMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ly.lit.entity.Resources">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="remark" property="remark" />
+        <result column="resources_type" property="resourcesType" />
+        <result column="uploadtime" property="uploadtime" />
+        <result column="account_id" property="accountId" />
+        <result column="content" property="content" />
+        <result column="access" property="access" />
+        <result column="username" property="username" />
+        <result column="accessWay" property="access_way" />
+        <collection property="typelist" column="id" select="queryRecordItem"></collection>
+
+    </resultMap>
+
+    <select id="getListPages" resultMap="BaseResultMap">
+            SELECT DISTINCT sr.* ,sa.username,ac.access_way
+            FROM sys_resources sr
+            LEFT JOIN sys_account sa
+            ON sa.id = sr.account_id
+            LEFT JOIN sys_resaccess ac
+            ON sr.access = ac.id
+            LEFT JOIN sys_reslinktype li
+            ON sr.id = li.resuorcceid
+            LEFT JOIN sys_resourcestype rt
+            ON li.typeid = rt.id
+            <if test='content != null and content != ""'>
+                WHERE sr.title LIKE #{content}
+                OR rt.typename LIKE #{content}
+            </if>
+            ORDER BY sr.uploadtime DESC
+    </select>
+
+    <select id="queryRecordItem" resultType="com.ly.lit.entity.Resourcestype">
+            SELECT srt.*
+            FROM sys_reslinktype srl
+            LEFT JOIN sys_resourcestype srt
+            ON srl.typeid = srt.id
+            WHERE srl.resuorcceid = #{id}
+    </select>
+
+    <select id="getListPagesById" resultMap="BaseResultMap">
+        SELECT DISTINCT sr.* ,sa.username,ac.access_way
+        FROM sys_resources sr
+        LEFT JOIN sys_account sa
+        ON sa.id = sr.account_id
+        LEFT JOIN sys_resaccess ac
+        ON sr.access = ac.id
+        LEFT JOIN sys_reslinktype li
+        ON sr.id = li.resuorcceid
+        LEFT JOIN sys_resourcestype rt
+        ON li.typeid = rt.id
+        WHERE sr.account_id = #{id}
+        <if test='content != null and content != ""'>
+            and (sr.title LIKE #{content}
+            OR rt.typename LIKE #{content})
+        </if>
+        ORDER BY sr.uploadtime DESC
+    </select>
+
+</mapper>

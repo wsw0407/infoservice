@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.lit.mapper.UservisitMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ly.lit.entity.Uservisit">
+        <id column="id" property="id" />
+        <result column="login_time" property="loginTime" />
+        <result column="exit_time" property="exitTime" />
+        <result column="visit_ip" property="visitIp" />
+        <result column="user_address" property="userAddress" />
+        <result column="user_from" property="userFrom" />
+        <result column="browser" property="browser" />
+        <result column="system" property="system" />
+        <result column="version" property="version" />
+        <result column="loginname" property="loginname" />
+        <result column="iphone" property="iphone" />
+    </resultMap>
+
+</mapper>

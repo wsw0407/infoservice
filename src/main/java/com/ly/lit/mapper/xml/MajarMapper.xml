@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.lit.mapper.MajarMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ly.lit.entity.Majar">
+        <id column="id" property="id" />
+        <result column="institute" property="institute" />
+        <result column="majarname" property="majarname" />
+        <result column="institnum" property="institnum" />
+    </resultMap>
+
+</mapper>

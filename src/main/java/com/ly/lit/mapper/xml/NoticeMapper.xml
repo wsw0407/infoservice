@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.lit.mapper.NoticeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ly.lit.entity.Notice">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="content" property="content" />
+        <result column="releasetime" property="releasetime" />
+        <result column="endtime" property="endtime" />
+        <result column="pic" property="pic" />
+        <result column="remark" property="remark" />
+        <result column="status" property="status" />
+        <result column="link" property="link" />
+        <collection property="typelist" column="id" select="queryNoticeItem"></collection>
+    </resultMap>
+
+    <select id="getListPages" resultMap="BaseResultMap">
+
+        SELECT DISTINCT sn.*,sns.status
+        FROM sys_notice sn
+        LEFT JOIN sys_noticestatus sns
+        ON sn.remark = sns.id
+        LEFT JOIN sys_noticelinktype snlt
+        ON sn.id = snlt.noticeid
+        LEFT JOIN sys_noticetype snt
+        ON snlt.typeid = snt.id
+        <if test='content != null and content != ""'>
+            WHERE sn.title LIKE #{content}
+            OR snt.typename LIKE #{content}
+        </if>
+        ORDER BY sn.releasetime DESC
+    </select>
+
+    <select id="getById" resultMap="BaseResultMap">
+
+        SELECT  sn.*,sns.status
+        FROM sys_notice sn
+        LEFT JOIN sys_noticestatus sns
+        ON sn.remark = sns.id
+        WHERE sn.id = #{id}
+
+    </select>
+
+    <select id="queryNoticeItem" resultType="com.ly.lit.entity.Noticetype">
+            SELECT snt.*
+            FROM sys_noticelinktype snlt
+            LEFT JOIN sys_noticetype snt
+            ON snlt.typeid = snt.id
+            WHERE snlt.noticeid = #{id}
+    </select>
+
+</mapper>

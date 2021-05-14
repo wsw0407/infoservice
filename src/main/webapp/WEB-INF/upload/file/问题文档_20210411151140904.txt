@@ -1,0 +1,22 @@
+用户昵称              姓名           邮箱        手机号     性别       班级           专业              账号
+username      realname         email      phone     sex      inclass       majarname      account         
+
+标题     描述             资源类型              上传时间             上传用户           获取内容    获取方式
+title   describe    resourecesType         uploadtime         username        content      access
+
+
+
+
+1.layui分页后如何跳转页面
+2.layui分页后如何模糊查询
+3.多级联动layui没有onchange事件
+4.编辑时如何渲染多级联动数据，jquery赋值无法触发事件，无法取下一下拉框的值，手动调用change事件
+  layui要通过代码点击触发body.find('select[name="majarId"]').next().find('.layui-anim').children('dd[lay-value="'+data.majarId+'"]').click();
+5. 页面编辑后关闭弹窗并刷新表格数据
+   当编辑框关闭时，从edit的页面触发的查询方法来刷新table;
+   使用parent.location会是页面整个刷新，使用open弹框的end属性会关闭弹窗就刷新
+
+
+
+
+6.mybatis-plus一对多且分页查询，，，通过 集合的嵌套结果映射   分页数据条数不对，但是最终数据list会装进去

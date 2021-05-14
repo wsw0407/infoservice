@@ -1,0 +1,11 @@
+Keil_v5    ( C:\ )  ==>  ( G:\ )
+
+VMware    C:\Program Files (x86)\Common Files   ===>  G:\c-wenjian
+
+Tencent     C:\Program Files (x86)\Common Files   ===>  G:\c-wenjian
+
+MySQL      C:\Program Files (x86)   ===>  G:\c-wenjian
+
+SmartCloudInput    C:\Program Files (x86)   ===>  G:\c-wenjian
+
+Tencent Files  C:\Users\DELL\Documents  ===>  G:\c-wenjian             Hh60395154
